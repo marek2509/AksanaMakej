@@ -7,11 +7,10 @@
 
 body {
 	width: 100%;
-
 }
 
 h1 {
-	padding: 100px;
+	padding: 100px 0;
 	font-size: 66px;
 	color: goldenrod;
 	text-align: center;
@@ -25,17 +24,18 @@ h1 {
 
 	ul {
 		list-style: none;
-		font-size: 36px;
+		font-size: 28px;
 	}
 	ul i {
-		margin-left: 25px;
+		margin-left: 10px;
 	}
 
 	ul li ul li {
-		font-size: 24px;
+		font-size: 18px;
 		margin-left: 100px;
 		padding: 5px;
 		cursor: default;
+		width: fit-content;
 	}
 
 	.smallList {
@@ -62,12 +62,13 @@ h1 {
 	}
 }
 
+$weight-border: 2px;
 .wrapper-img {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	min-width: 100%;
-	height: 100vh;
+	min-height: 100vh;
 	background-color: #fff;
 	flex-wrap: wrap;
 	.container {
@@ -75,11 +76,11 @@ h1 {
 		background-color: #fff;
 		width: fit-content;
 		max-width: 80%;
-		margin-right: 50px;
+		padding: 20px;
 	}
 	.corner {
 		position: relative;
-		padding: 5px;
+		padding: calc($weight-border * 2);
 	}
 
 	img {
@@ -99,34 +100,277 @@ h1 {
 	.two::after {
 		content: "";
 		position: absolute;
-		width: 80px;
-		height: 80px;
+		width: 30%;
+		height: 25%;
 	}
 
 	.two::before {
 		top: 0px;
 		left: 0px;
-		border-top: 3px solid goldenrod;
-		border-left: 3px solid goldenrod;
+		border-top: $weight-border solid goldenrod;
+		border-left: $weight-border solid goldenrod;
 		margin: 0;
 	}
 
 	.two::after {
-		bottom: 3px;
+		bottom: $weight-border * 2;
 		right: 0px;
-		border-bottom: 3px solid goldenrod;
-		border-right: 3px solid goldenrod;
+		border-bottom: $weight-border solid goldenrod;
+		border-right: $weight-border solid goldenrod;
 	}
 
 	.container:hover .two::before,
 	.container:hover .two::after {
-		width: calc(80% - 3px);
-		height: calc(80% - 6px);
+		width: calc(70%);
+		height: calc(70%);
 	}
 
 	.container:hover .all::before,
 	.container:hover .all::after {
-		width: calc(100% - 3px);
-		height: calc(100% - 6px);
+		width: calc(100% - $weight-border);
+		height: calc(100% - $weight-border * 2 - $weight-border);
+	}
+}
+
+$colorAfterBefor: #daa520;
+.section-links {
+	.box {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		width: 100%;
+		height: 100%;
+		padding: 80px 140px;
+		border-radius: 15px;
+		background-color: #222;
+		box-shadow: 0 0 15px rgba(0, 140, 255, 0.6);
+	}
+
+	.link {
+		position: relative;
+		padding: 10px 20px;
+		font-size: 36px;
+		color: white;
+		text-decoration: none;
+		margin: 10px;
+		width: fit-content;
+		display: block;
+	}
+
+	.link:hover {
+		cursor: pointer;
+		color: $colorAfterBefor;
+	}
+
+	.link,
+	.link::after,
+	.link::before {
+		transition: 0.3s;
+	}
+
+	/* pierwszy link */
+
+	.one::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		height: 3px;
+		width: 100%;
+		background-color: $colorAfterBefor;
+		transform: scaleX(0);
+		transform-origin: right;
+		transition: transform 0.3s ease-in;
+	}
+
+	.one:hover::after {
+		transform: scaleX(1);
+		transform-origin: left;
+	}
+
+	/* drugi link */
+
+	.two::before,
+	.two::after {
+		content: "";
+		position: absolute;
+		width: 0;
+		height: 0;
+	}
+
+	.two::before {
+		top: -2px;
+		left: -8px;
+		border-top: 0 solid white;
+		border-left: 0 solid white;
+	}
+
+	.two::after {
+		bottom: -2px;
+		right: -8px;
+		border-bottom: 0 solid white;
+		border-right: 0 solid white;
+	}
+
+	.two:hover::before,
+	.two:hover::after {
+		width: 50px;
+		height: 50%;
+	}
+
+	.two:hover::before {
+		border-top: 2px solid $colorAfterBefor;
+		border-left: 2px solid $colorAfterBefor;
+	}
+
+	.two:hover::after {
+		border-bottom: 2px solid $colorAfterBefor;
+		border-right: 2px solid $colorAfterBefor;
+	}
+
+	/* trzeci link */
+
+	.three::before,
+	.three::after {
+		content: "";
+		position: absolute;
+		width: 0;
+		bottom: 0;
+		border-bottom: 3px solid $colorAfterBefor;
+	}
+
+	.three::before {
+		right: 50%;
+	}
+
+	.three::after {
+		left: 50%;
+	}
+
+	.three:hover::before,
+	.three:hover::after {
+		width: 50%;
+	}
+
+	/* czwarty link */
+	.four {
+		z-index: 0;
+	}
+
+	.four::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		height: 0;
+		width: 100%;
+		background-color: $colorAfterBefor;
+		z-index: -1;
+	}
+
+	.four:hover {
+		color: #000;
+	}
+
+	.four:hover::after {
+		height: 100%;
+	}
+
+	/* piąty link */
+
+	.five {
+		z-index: 0;
+	}
+
+	.five::before,
+	.five::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 0;
+		background-color: $colorAfterBefor;
+		z-index: -1;
+	}
+
+	.five::before {
+		left: 0;
+	}
+
+	.five::after {
+		right: 0;
+	}
+
+	.five:hover {
+		color: black;
+	}
+
+	.five:hover::after,
+	.five:hover::before {
+		animation: background 0.3s both;
+	}
+
+	// .five:hover::after,
+	// .five:hover::before {
+	// 	// animation: background 0.3s both;
+	// }
+	.five:not(:hover)::after,
+	.five:not(:hover)::before {
+		animation: backgroundNot 0.3s both;
+	}
+
+	@keyframes backgroundNot {
+		0% {
+			width: 51%;
+		}
+		100% {
+			width: 0;
+		}
+
+	}
+
+	@keyframes background {
+		0% {
+			width: 0;
+		}
+
+		100% {
+			width: 51%;
+		}
+	}
+
+	@keyframes blink {
+		0% {
+			opacity: 1;
+		}
+
+		10% {
+			opacity: 0;
+		}
+
+		20% {
+			opacity: 0;
+		}
+
+		30% {
+			opacity: 1;
+		}
+
+		40% {
+			opacity: 1;
+		}
+
+		60% {
+			opacity: 0;
+		}
+
+		75% {
+			opacity: 0;
+		}
+
+		100% {
+			opacity: 1;
+		}
 	}
 }

@@ -23,21 +23,3 @@ const addClassActive = (elem) => {
 };
 
 listArray.forEach((x) => x.addEventListener("click", () => addClassActive(x)));
-
-
-
-
-
-const btn = document.querySelector("button");
-const h1 = document.querySelector("h1");
-
-console.log(btn);
-console.log(h1);
-
-btn.addEventListener('dblclick', () => {
-    h1.style.color = "lime";
-})
-
-btn.addEventListener('click', () => {
-    h1.style.color = "red"
-})
